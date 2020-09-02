@@ -1,7 +1,7 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.{KeyValue, MatchingEntities, Profile}
+import org.bd720.ercore.methods.datastructure.{KeyValue, MatchingEntities, Profile}
 object SerializedObjectLoader extends WrapperTrait {
   def loadProfiles(filePath: String, startIDFrom: Int = 0, realFieldID: String = "", sourceId: Int = 0): RDD[Profile] = {
     @transient lazy val log = org.apache.log4j.LogManager.getRootLogger

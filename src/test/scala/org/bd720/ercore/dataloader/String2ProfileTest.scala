@@ -1,6 +1,6 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.scalatest.{FlatSpec, FunSuite}
-import org.wumiguo.ser.methods.datastructure.KeyValue
+import org.bd720.ercore.methods.datastructure.KeyValue
 class String2ProfileTest extends FunSuite {
   test("parse string to profile") {
     val string = "id=1|originalID=100|sourceId=22|attrs=[id=304586;title=The WASA2 object-oriented workflow management system;author=Gottfried vossen, Mathias Weske;year=1999]"

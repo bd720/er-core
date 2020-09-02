@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.similarityjoins.datastructure
+package org.bd720.ercore.methods.similarityjoins.datastructure
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 class Category extends Serializable {

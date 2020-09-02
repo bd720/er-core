@@ -165,7 +165,7 @@ object CEP {
               toKeep: Broadcast[scala.collection.Map[Int, Double]],
               numberOfEdges: Double,
               edgesPerProfile: Broadcast[scala.collection.Map[Int, Double]]
-             ): RDDouble, Double, Iterable[UnweightedEdge])] = {
+             ): RDD[(Double, Double, Iterable[UnweightedEdge])] = {
     profileBlocksFiltered.mapPartitions { partition =>
       val localWeights = Array.fill[Double](maxID + 1) {
         0

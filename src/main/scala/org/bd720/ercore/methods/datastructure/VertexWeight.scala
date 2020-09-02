@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
 case class VertexWeight(profileId: Int, weight: Double, numNeighbors: Int, connections: Map[Int, Double]) extends Ordered[VertexWeight] {
   override def compare(that: VertexWeight): Int = {
     val w1 = this.weight / this.numNeighbors

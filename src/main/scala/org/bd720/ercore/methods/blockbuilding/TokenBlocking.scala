@@ -153,7 +153,7 @@ object TokenBlocking {
             else {
               val key = dataset + keyValue.key //Add the dataset suffix to the key
               val clusterID = clusterMap.getOrElse(key, defaultClusterID) //Gets the id of this key cluster, if it not exists returns the default one
-              val values = keyValue.value.spliockingUtils.TokenizerPattern.DEFAULT_SPLITTING).map(_.toLowerCase.trim).filter(_.trim.nonEmpty).distinct //Split the values and obtain the tokens
+              val values = keyValue.value.split(BlockingUtils.TokenizerPattern.DEFAULT_SPLITTING).map(_.toLowerCase.trim).filter(_.trim.nonEmpty).distinct //Split the values and obtain the tokens
               values.map(_ + "_" + clusterID) //Add the cluster id to the tokens
             }
         }.filter(_.nonEmpty)

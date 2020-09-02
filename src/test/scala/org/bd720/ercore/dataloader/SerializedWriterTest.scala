@@ -1,7 +1,7 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import java.util
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.model.IdDuplicates
+import org.bd720.ercore.model.IdDuplicates
 import scala.collection.mutable
 class SerializedWriterTest extends FlatSpec {
   it should " write IdDuplicateSet to file " in {

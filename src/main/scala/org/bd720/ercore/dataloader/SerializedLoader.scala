@@ -1,7 +1,7 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import java.io.{FileInputStream, ObjectInputStream}
 import java.util
-import org.wumiguo.ser.model.{EntityProfile, IdDuplicates}
+import org.bd720.ercore.model.{EntityProfile, IdDuplicates}
 import scala.io.Source
 object SerializedLoader extends scala.AnyRef {
   def loadSerializedGroundtruth(fileName: scala.Predef.String): java.util.HashSet[IdDuplicates] = {

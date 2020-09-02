@@ -1,7 +1,7 @@
-package org.wumiguo.ser.testsample
+package org.bd720.ercore.testsample
 import org.apache.spark.rdd.RDD
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
+import org.bd720.ercore.common.SparkEnvSetup
 class RddTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(getClass.getName)
   it should "reduce" in {

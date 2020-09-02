@@ -1,6 +1,6 @@
-package org.wumiguo.ser.methods.entityclustering
+package org.bd720.ercore.methods.entityclustering
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.{Profile, WeightedEdge}
+import org.bd720.ercore.methods.datastructure.{Profile, WeightedEdge}
 trait EntityClusteringTrait {
   def getClusters(profiles: RDD[Profile],
                   edges: RDD[WeightedEdge],

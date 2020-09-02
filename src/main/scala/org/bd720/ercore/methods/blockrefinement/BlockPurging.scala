@@ -1,6 +1,6 @@
-package org.wumiguo.ser.methods.blockrefinement
+package org.bd720.ercore.methods.blockrefinement
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.BlockAbstract
+import org.bd720.ercore.methods.datastructure.BlockAbstract
 object BlockPurging {
   def blockPurging(blocks : RDD[BlockAbstract], smoothFactor : Double) : RDD[BlockAbstract] = {
     val blocksComparisonsAndSizes = blocks map {

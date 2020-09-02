@@ -1,8 +1,8 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
-import org.wumiguo.ser.dataloader.JSONWrapper.parseData
-import org.wumiguo.ser.methods.datastructure.{MatchingEntities, Profile}
+import org.bd720.ercore.dataloader.JSONWrapper.parseData
+import org.bd720.ercore.methods.datastructure.{MatchingEntities, Profile}
 object ParquetWrapper extends WrapperTrait {
   override def loadProfiles(filePath: String, startIDFrom: Int = 0, realIDField: String, sourceId: Int = 0): RDD[Profile] = {
     loadProfiles2(filePath, startIDFrom, realIDField = realIDField, sourceId = sourceId)

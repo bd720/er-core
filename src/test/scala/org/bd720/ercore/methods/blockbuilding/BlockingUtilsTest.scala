@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.blockbuilding
+package org.bd720.ercore.methods.blockbuilding
 import org.scalatest.FlatSpec
 class BlockingUtilsTest extends FlatSpec {
   it should "(Int,Seq) to Iterable(tuple)" in {

@@ -98,7 +98,7 @@ object PPJoin {
       case (tokenId, documents) => (tokenId, documents.toArray.sortBy(x => x._2.length))
     }
   }
-  def getCandidates(tokenizedDocSort: RDD[(Int, Array[Int])], threshold: Double, separatorID: Int = -1): [((Int, Array[Int]), (Int, Array[Int]))] = {
+  def getCandidates(tokenizedDocSort: RDD[(Int, Array[Int])], threshold: Double, separatorID: Int = -1): RDD[((Int, Array[Int]), (Int, Array[Int]))] = {
     val ts = Calendar.getInstance().getTimeInMillis
     val prefixIndex = buildPrefixIndex(tokenizedDocSort, threshold)
     prefixIndex.count()

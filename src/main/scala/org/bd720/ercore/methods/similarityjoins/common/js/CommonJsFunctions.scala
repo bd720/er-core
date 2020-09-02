@@ -1,8 +1,8 @@
-package org.wumiguo.ser.methods.similarityjoins.common.js
+package org.bd720.ercore.methods.similarityjoins.common.js
 import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.Profile
-import org.wumiguo.ser.methods.similarityjoins.datastructure.TokenDocumentInfo
+import org.bd720.ercore.methods.datastructure.Profile
+import org.bd720.ercore.methods.similarityjoins.datastructure.TokenDocumentInfo
 object CommonJsFunctions {
   def tokenize(document: String): Set[String] = {
     document.split("[\\W_]").map(_.trim.toLowerCase).filter(_.length > 0).toSet //.filter(x => !stopWords.contains(x)).toSet

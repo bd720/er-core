@@ -1,10 +1,10 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.methods.datastructure.{KeyValue, MatchingEntities, Profile}
-import org.wumiguo.ser.testutil.TestDirs
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.methods.datastructure.{KeyValue, MatchingEntities, Profile}
+import org.bd720.ercore.testutil.TestDirs
 import scala.collection.mutable
 class WrapperTraitTest extends FlatSpec
   with SparkEnvSetup {

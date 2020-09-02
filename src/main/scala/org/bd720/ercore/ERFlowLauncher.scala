@@ -1,7 +1,7 @@
-package org.wumiguo.ser
+package org.bd720.ercore
 import org.slf4j.LoggerFactory
-import org.wumiguo.ser.flow.{ERFlow, End2EndSimpleFlow, End2EndSimpleFlowSample, SchemaBasedSimJoinECFlow, SchemaBasedSimJoinECFlowSample}
-import org.wumiguo.ser.methods.util.CommandLineUtil
+import org.bd720.ercore.flow.{ERFlow, End2EndSimpleFlow, End2EndSimpleFlowSample, SchemaBasedSimJoinECFlow, SchemaBasedSimJoinECFlowSample}
+import org.bd720.ercore.methods.util.CommandLineUtil
 object ERFlowLauncher {
   val log = LoggerFactory.getLogger(getClass.getName)
   def main(args: Array[String]): Unit = {

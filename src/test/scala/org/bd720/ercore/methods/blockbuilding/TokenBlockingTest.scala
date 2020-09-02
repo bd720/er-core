@@ -160,7 +160,7 @@ class TokenBlockingTest extends FlatSpec with SparkEnvSetup {
   it should "createBlocksCluster v6 with data from 2 data source(sourceID) " in {
     val attrs1 = mutable.MutableList[KeyValue](KeyValue("title", "helloworld"), KeyValue("author", "lev"))
     val attrs2 = mutable.MutableList[KeyValue](KeyValue("title", "hello world"), KeyValue("author", "liu"))
-    val attrs3 = mutable.MutableList[KeyValue](KeyValue("title"gData Tech"), KeyValue("author", "liu"))
+    val attrs3 = mutable.MutableList[KeyValue](KeyValue("title", "BigData Tech"), KeyValue("author", "liu"))
     val attrs4 = mutable.MutableList[KeyValue](KeyValue("title", "bigdata tech"), KeyValue("postBy", "liu"))
     val attrs5 = mutable.MutableList[KeyValue](KeyValue("title", "data tech"), KeyValue("postBy", "levin"))
     val attrs6 = mutable.MutableList[KeyValue](KeyValue("title", "hello tech"), KeyValue("postBy", "liu"))

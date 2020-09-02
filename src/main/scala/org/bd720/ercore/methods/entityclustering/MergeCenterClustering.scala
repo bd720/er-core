@@ -1,7 +1,7 @@
-package org.wumiguo.ser.methods.entityclustering
+package org.bd720.ercore.methods.entityclustering
 import org.apache.spark.rdd.RDD
 import EntityClusterUtils.{addUnclusteredProfiles, connectedComponents}
-import org.wumiguo.ser.methods.datastructure.{Profile, WeightedEdge}
+import org.bd720.ercore.methods.datastructure.{Profile, WeightedEdge}
 object MergeCenterClustering extends EntityClusteringTrait {
   override def getClusters(profiles: RDD[Profile], edges: RDD[WeightedEdge], maxProfileID: Int, edgesThreshold: Double, separatorID: Int): RDD[(Int, Set[Int])] = {
     val cc = connectedComponents(edges.filter(_.weight > edgesThreshold))

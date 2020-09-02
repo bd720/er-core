@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.similarityjoins.common.js
+package org.bd720.ercore.methods.similarityjoins.common.js
 object JsFilters {
   def getPrefix(tokens: Array[Int], threshold: Double, k: Int = 1): Array[Int] = {
     val len = tokens.length

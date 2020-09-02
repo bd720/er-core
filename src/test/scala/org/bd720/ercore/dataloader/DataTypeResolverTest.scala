@@ -1,4 +1,4 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import DataType._
 import org.scalatest.FlatSpec
 class DataTypeResolverTest extends FlatSpec {

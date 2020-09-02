@@ -1,7 +1,7 @@
-package org.wumiguo.ser.methods.similarityjoins.common
+package org.bd720.ercore.methods.similarityjoins.common
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.methods.datastructure.{KeyValue, Profile}
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.methods.datastructure.{KeyValue, Profile}
 import scala.collection.mutable
 class CommonFunctionsTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(getClass.getName)

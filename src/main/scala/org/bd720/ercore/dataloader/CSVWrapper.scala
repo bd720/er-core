@@ -1,8 +1,8 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
-import org.wumiguo.ser.methods.datastructure
-import org.wumiguo.ser.methods.datastructure.{MatchingEntities, Profile}
+import org.bd720.ercore.methods.datastructure
+import org.bd720.ercore.methods.datastructure.{MatchingEntities, Profile}
 object CSVWrapper extends WrapperTrait {
   override def loadProfiles(filePath: String, startIDFrom: Int, realIDField: String, sourceId: Int = 0): RDD[Profile] = {
     loadProfiles2(filePath, startIDFrom, realIDField = realIDField, sourceId = sourceId)

@@ -94,7 +94,7 @@ object ConnectedComponents extends Serializable {
     } else if (neighbors.length == 1) {
       val neighbor = neighbors(0)
       if (node > neighbor)
-        if (partialPairs != null) List((node, neighbor)) ::: partialPairs se List((node, neighbor))
+        if (partialPairs != null) List((node, neighbor)) ::: partialPairs else List((node, neighbor))
       else if (partialPairs != null) List((neighbor, node)) ::: partialPairs else List((neighbor, node))
     } else {
       val newPartialPairs = neighbors.map(neighbor => {

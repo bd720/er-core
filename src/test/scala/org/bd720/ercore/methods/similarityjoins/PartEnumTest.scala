@@ -81,7 +81,7 @@ class PartEnumTest extends FlatSpec with SparkEnvSetup {
     val candidates = PartEnum.getCandidates(documents, 0.9)
     assertResult(
       Array(
-        ((0, "3 length cand"), (1, "4 length candidate 1")),
+        ((0, "3 length candidate"), (1, "4 length candidate 1")),
         ((2, "7 length candidate 1 2 3 4"), (3, "8 length candidate 1 2 3 4 5")),
         ((3, "8 length candidate 1 2 3 4 5"), (4, "10 length candidate 1 2 3 4 5 6 7")),
         ((4, "10 length candidate 1 2 3 4 5 6 7"), (5, "12 length candidate 1 2 3 4 5 6 7 8 9")),

@@ -1,8 +1,8 @@
-package org.wumiguo.ser.methods.similarityjoins.simjoin
+package org.bd720.ercore.methods.similarityjoins.simjoin
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.KeyValue
-import org.wumiguo.ser.methods.entitymatching.MatchingFunctions
-import org.wumiguo.ser.methods.similarityjoins.datastructure.Category
+import org.bd720.ercore.methods.datastructure.KeyValue
+import org.bd720.ercore.methods.entitymatching.MatchingFunctions
+import org.bd720.ercore.methods.similarityjoins.datastructure.Category
 import scala.collection.mutable.ArrayBuffer
 import scala.util.control.Breaks._
 object PartEnum {

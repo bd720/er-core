@@ -99,7 +99,7 @@ object RicochetSRClustering extends EntityClusteringTrait {
               if (isNonCenter(v2)) {
                 val prevClusterCenter = currentCenter(v2)
                 clusters(prevClusterCenter).remove(v2)
-                if (clusters(prevClustCenter).size < 2) {
+                if (clusters(prevClusterCenter).size < 2) {
                   centersToReassign.add(prevClusterCenter)
                 }
               }

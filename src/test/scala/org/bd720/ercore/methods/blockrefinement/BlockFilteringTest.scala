@@ -1,7 +1,7 @@
-package org.wumiguo.ser.methods.blockrefinement
+package org.bd720.ercore.methods.blockrefinement
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.methods.datastructure.{BlockWithComparisonSize, ProfileBlocks}
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.methods.datastructure.{BlockWithComparisonSize, ProfileBlocks}
 class BlockFilteringTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(this.getClass.getName)
   it should "filtering block V1 " in {

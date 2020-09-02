@@ -1,7 +1,7 @@
-package org.wumiguo.ser.methods.entityclustering
+package org.bd720.ercore.methods.entityclustering
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.methods.datastructure.WeightedEdge
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.methods.datastructure.WeightedEdge
 class EntityClusterUtilsTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(getClass.getName)
   it should "connectedComponents " in {

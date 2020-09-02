@@ -1,11 +1,14 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.Row
-import org.wumiguo.ser.methods.datastructure.{KeyValue, Profile}
+import org.bd720.ercore.dataloader.filter.{DummyFieldFilter, FieldFilter}
+import org.bd720.ercore.methods.datastructure.{KeyValue, Profile}
 import scala.collection.mutable.MutableList
 trait ProfileLoaderTrait {
-  def load(filePath: String, startIDFrom: Int = 0, realIDField: String,
-           sourceId: Int = 0, fieldsToKeep: List[String] = Nil, keepRealID: Boolean = false): RDD[Profile]
+  def load(filePath: String, startIDFrom: Int = 0, realIDField: String = "",
+           sourceId: Int = 0, fieldsToKeep: List[String] = Nil, keepRealID: Boolean = false,
+           filter: FieldFilter = DummyFieldFilter,
+           fieldValuesScope: List[KeyValue] = Nil): RDD[Profile]
   def rowToAttributes(columnNames: Array[String], row: Row, explodeInnerFields: Boolean = false, innerSeparator: String = ","): MutableList[KeyValue] = {
     val attributes: MutableList[KeyValue] = new MutableList()
     for (i <- 0 until row.size) {

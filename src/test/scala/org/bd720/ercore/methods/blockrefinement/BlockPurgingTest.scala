@@ -96,7 +96,7 @@ class BlockPurgingTest extends FlatSpec with SparkEnvSetup {
         BlockClean(100, Array[Set[Int]](Set[Int](1, 3, 5), Set[Int](2, 4, 6)), 0.81, 666)
       )
     )
-    val bapRdd = BlockPurging.blockPung(baRdd, 0.5)
+    val bapRdd = BlockPurging.blockPurging(baRdd, 0.5)
     assert(0 == bapRdd.count())
     bapRdd.foreach(x => println("after-purging:" + x))
   }

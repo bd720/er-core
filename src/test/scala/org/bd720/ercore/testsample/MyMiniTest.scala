@@ -1,4 +1,4 @@
-package org.wumiguo.ser.testsample
+package org.bd720.ercore.testsample
 import org.scalatest.FeatureSpec
 class MyMiniTest extends FeatureSpec {
   scenario("A simple test") {

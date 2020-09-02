@@ -1,7 +1,7 @@
-package org.wumiguo.ser.methods.util
+package org.bd720.ercore.methods.util
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.blockbuilding.TokenBlocking
-import org.wumiguo.ser.methods.datastructure._
+import org.bd720.ercore.methods.blockbuilding.TokenBlocking
+import org.bd720.ercore.methods.datastructure._
 object Converters {
   def blocksToProfileBlocks(blocks: RDD[BlockAbstract]): RDD[ProfileBlocks] = {
     blocks

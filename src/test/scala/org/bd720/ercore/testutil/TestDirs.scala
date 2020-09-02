@@ -1,4 +1,4 @@
-package org.wumiguo.ser.testutil
+package org.bd720.ercore.testutil
 object TestDirs {
   def testOutputDir: String = {
     val testOutputDir = "test-output"

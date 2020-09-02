@@ -1,9 +1,9 @@
-package org.wumiguo.ser.methods.entityclustering
+package org.bd720.ercore.methods.entityclustering
 import org.apache.spark.rdd.RDD
 import org.jgrapht.alg.ConnectivityInspector
 import org.jgrapht.graph.{DefaultWeightedEdge, SimpleWeightedGraph}
-import org.wumiguo.ser.methods.datastructure.{Profile, WeightedEdge}
-import org.wumiguo.ser.methods.util.GomoryHuTree
+import org.bd720.ercore.methods.datastructure.{Profile, WeightedEdge}
+import org.bd720.ercore.methods.util.GomoryHuTree
 object CutClustering extends EntityClusteringTrait {
   override def getClusters(profiles: RDD[Profile], edges: RDD[WeightedEdge], maxProfileID: Int, edgesThreshold: Double, separatorID: Int): RDD[(Int, Set[Int])] = {
     getClusters(profiles, edges, maxProfileID, edgesThreshold, separatorID, 0.3)

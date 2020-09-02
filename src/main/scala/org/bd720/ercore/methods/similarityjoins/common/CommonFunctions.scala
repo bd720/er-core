@@ -1,9 +1,9 @@
-package org.wumiguo.ser.methods.similarityjoins.common
+package org.bd720.ercore.methods.similarityjoins.common
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{Row, SparkSession}
 import org.slf4j.LoggerFactory
-import org.wumiguo.ser.methods.datastructure
-import org.wumiguo.ser.methods.datastructure.{KeyValue, Profile}
+import org.bd720.ercore.methods.datastructure
+import org.bd720.ercore.methods.datastructure.{KeyValue, Profile}
 import scala.collection.mutable
 object CommonFunctions {
   val log = LoggerFactory.getLogger(getClass.getName)

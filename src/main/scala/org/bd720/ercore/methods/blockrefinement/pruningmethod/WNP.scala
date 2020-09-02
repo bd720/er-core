@@ -159,7 +159,7 @@ object WNP {
         neighboursNumber = CommonNodePruning.calcCBS(pb, blockIndex, separatorID, useEntropy, blocksEntropies, localWeights, entropies, neighbours, true)
         CommonNodePruning.calcWeights(pb, localWeights, neighbours, entropies, neighboursNumber, blockIndex, separatorID, weightType, profileBlocksSizeIndex, useEntropy, numberOfEdges, edgesPerProfile)
         val threshold = calcThreshold(localWeights, neighbours, neighboursNumber, thresholdType)
-        CommonNodePruning.doReset(localWeights, neighbours, eopies, useEntropy, neighboursNumber)
+        CommonNodePruning.doReset(localWeights, neighbours, entropies, useEntropy, neighboursNumber)
         (pb.profileID, threshold)
       }
     }

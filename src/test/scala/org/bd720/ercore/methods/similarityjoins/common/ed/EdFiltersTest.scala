@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.similarityjoins.common.ed
+package org.bd720.ercore.methods.similarityjoins.common.ed
 import org.scalatest.FlatSpec
 class EdFiltersTest extends FlatSpec {
   it should "getPrefixLen " in {

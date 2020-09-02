@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
 import org.scalatest.FlatSpec
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer

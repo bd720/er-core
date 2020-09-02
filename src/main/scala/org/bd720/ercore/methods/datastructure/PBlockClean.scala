@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
   case class PBlockClean(blockID: Long, profiles: Array[Set[(Long, Profile)]], var entropy: Double = -1, var clusterID: Integer = -1, blockingKey: String = "") extends PBlockAbstract with Serializable {
    override def getComparisonSize(): Double = {
     val a = profiles.filter(_.nonEmpty)

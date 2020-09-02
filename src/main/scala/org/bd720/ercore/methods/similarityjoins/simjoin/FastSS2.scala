@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.similarityjoins.simjoin
+package org.bd720.ercore.methods.similarityjoins.simjoin
 import java.util.Calendar
 import org.apache.log4j.LogManager
 import org.apache.spark.rdd.RDD

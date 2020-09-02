@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.similarityjoins.common.ed
+package org.bd720.ercore.methods.similarityjoins.common.ed
 object EdFilters {
   def getPrefixLen(qGramLen: Int, threshold: Int): Int = {
     qGramLen * threshold + 1

@@ -150,7 +150,7 @@ object CNP {
                 else if (comparisonType == PruningUtils.ComparisonTypes.AND && neighbourRetainedNeighbours.contains(profileID) && profileRetainedNeighbours.contains(neighbourID)) {
                   cont += 1
                   if (groundtruth != null && groundtruth.value.contains((profileID, neighbourID))) {
-                gtNum += 1
+                    gtNum += 1
                   }
                   edges = UnweightedEdge(profileID, neighbourID) :: edges
                 }

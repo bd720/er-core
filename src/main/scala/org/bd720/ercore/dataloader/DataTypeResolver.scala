@@ -1,5 +1,5 @@
-package org.wumiguo.ser.dataloader
-import org.wumiguo.ser.dataloader.DataType.DataType
+package org.bd720.ercore.dataloader
+import org.bd720.ercore.dataloader.DataType.DataType
 object DataTypeResolver {
   def getDataType(dataFile: String): DataType = {
     import DataType._

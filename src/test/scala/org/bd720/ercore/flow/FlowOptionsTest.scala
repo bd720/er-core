@@ -1,4 +1,4 @@
-package org.wumiguo.ser.flow
+package org.bd720.ercore.flow
 import org.scalatest.FlatSpec
 class FlowOptionsTest extends FlatSpec {
   it should "load flow options map" in {

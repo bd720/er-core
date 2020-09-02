@@ -1,10 +1,10 @@
-package org.wumiguo.ser.methods.entityclustering
+package org.bd720.ercore.methods.entityclustering
 import org.apache.log4j.LogManager
 import org.apache.spark.SparkContext
 import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.graphx.{Edge, Graph}
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.{Profile, WeightedEdge}
+import org.bd720.ercore.methods.datastructure.{Profile, WeightedEdge}
 object EntityClusterUtils {
   def addUnclusteredProfiles(profiles: RDD[Profile], clusters: RDD[(Int, Set[Int])]): RDD[(Int, Set[Int])] = {
     val profilesIds = profiles.map(_.id)

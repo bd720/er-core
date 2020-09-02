@@ -1,22 +1,23 @@
-package org.wumiguo.ser.flow
+package org.bd720.ercore.flow
+import org.apache.spark.sql.SparkSession
 import org.slf4j.LoggerFactory
-import org.wumiguo.ser.ERFlowLauncher.getClass
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.dataloader.CSVProfileLoader
-import org.wumiguo.ser.flow.End2EndFlow.log
-import org.wumiguo.ser.methods.blockbuilding.TokenBlocking
-import org.wumiguo.ser.methods.blockrefinement.{BlockFiltering, BlockPurging}
-import org.wumiguo.ser.methods.datastructure.{KeysCluster, Profile}
-import org.wumiguo.ser.methods.entityclustering.EntityClusterUtils
-import org.wumiguo.ser.methods.entitymatching.{EntityMatching, MatchingFunctions}
-import org.wumiguo.ser.methods.util.Converters
+import org.bd720.ercore.ERFlowLauncher.getClass
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.dataloader.{CSVProfileLoader, GroundTruthLoader}
+import org.bd720.ercore.flow.End2EndFlow.log
+import org.bd720.ercore.methods.blockbuilding.TokenBlocking
+import org.bd720.ercore.methods.blockrefinement.{BlockFiltering, BlockPurging}
+import org.bd720.ercore.methods.datastructure.{KeysCluster, Profile}
+import org.bd720.ercore.methods.entityclustering.EntityClusterUtils
+import org.bd720.ercore.methods.entitymatching.{EntityMatching, MatchingFunctions}
+import org.bd720.ercore.methods.util.Converters
 object End2EndFlow extends ERFlow with SparkEnvSetup {
   override def run(args: Array[String]): Unit = {
-    val spark = createLocalSparkSession(getClass.getName)
+    val spark = SparkSession.builder().getOrCreate()
     log.info("launch full end2end flow")
     val gtPath = getClass.getClassLoader.getResource("sampledata/dblpAcmIdDuplicates.gen.csv").getPath
     log.info("load ground-truth from path {}", gtPath)
-    val gtRdd = CSVProfileLoader.loadGroundTruth(gtPath)
+    val gtRdd = GroundTruthLoader.loadGroundTruth(gtPath)
     log.info("gt size is {}", gtRdd.count())
     val ep1Path = getClass.getClassLoader.getResource("sampledata/acmProfiles.gen.csv").getPath
     val ep1Rdd = CSVProfileLoader.loadProfilesAdvanceMode(ep1Path, startIDFrom = 0, separator = ",", header = true, sourceId = 1001)

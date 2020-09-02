@@ -69,7 +69,8 @@ class EntityMatchingTest extends FlatSpec with SparkEnvSetup {
         (3, Profile(333, mutable.MutableList[KeyValue](KeyValue("title", "3rd post")), "yagk10x", 323)),
         (4, Profile(444, mutable.MutableList[KeyValue](KeyValue("title", "4th post")), "Jzla29K", 323)),
         (5, Profile(555, mutable.MutableList[KeyValue](KeyValue("title", "5th post")), "Jzla29K", 323))
-      ), 2   val mapRdd = EntityMatching.getProfilesMap(profRdd)
+      ), 2)
+    val mapRdd = EntityMatching.getProfilesMap(profRdd)
     mapRdd.foreach(x => println("map:" + x))
     assert(mapRdd.count() == 2)
     val part = mapRdd.filter(_.contains(1)).collect().toList.head

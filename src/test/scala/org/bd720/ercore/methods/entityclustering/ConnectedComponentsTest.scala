@@ -97,7 +97,7 @@ class ConnectedComponentsTest extends FlatSpec with SparkEnvSetup with Serializa
     log.info("count=" + _1.count() + ", weC=" + weRddCount)
     _1.foreach(x => println("nodeItem=" + x))
     assert(3 == _1.count())
-    assertResult(List[ng, Long)]((0, 0), (1, 0), (2, 0)))(_1.toLocalIterator.toList)
+    assertResult(List[(Long, Long)]((0, 0), (1, 0), (2, 0)))(_1.toLocalIterator.toList)
   }
   it should "run v7" in {
     val weRdd = spark.sparkContext.parallelize(Seq(

@@ -78,7 +78,7 @@ object WEP {
     (cont, gtFound, edges)
   }
   def calcThreshold(profileBlocksFiltered: RDD[ProfileBlocks],
-                    blockIndex: Broast[scala.collection.Map[Int, Array[Set[Int]]]],
+                    blockIndex: Broadcast[scala.collection.Map[Int, Array[Set[Int]]]],
                     maxID: Int,
                     separatorID: Array[Int],
                     weightType: String,

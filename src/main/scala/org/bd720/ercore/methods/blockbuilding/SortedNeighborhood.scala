@@ -1,9 +1,9 @@
-package org.wumiguo.ser.methods.blockbuilding
+package org.bd720.ercore.methods.blockbuilding
 import org.apache.spark.Partitioner
 import org.apache.spark.rdd.RDD
 import org.slf4j.LoggerFactory
-import org.wumiguo.ser.methods.blockbuilding.TokenBlocking.removeBadWords
-import org.wumiguo.ser.methods.datastructure.{BlockAbstract, BlockClean, BlockDirty, KeyValue, Profile}
+import org.bd720.ercore.methods.blockbuilding.TokenBlocking.removeBadWords
+import org.bd720.ercore.methods.datastructure.{BlockAbstract, BlockClean, BlockDirty, KeyValue, Profile}
 object SortedNeighborhood extends Serializable {
   val log = LoggerFactory.getLogger(getClass.getName)
   class KeyPartitioner(override val numPartitions: Int) extends Partitioner {

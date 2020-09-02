@@ -1,8 +1,8 @@
-package org.wumiguo.ser.methods.util
+package org.bd720.ercore.methods.util
 import org.apache.spark.rdd.RDD
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.methods.datastructure.{BlockAbstract, BlockClean, BlockDirty, BlockWithComparisonSize, ProfileBlocks}
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.methods.datastructure.{BlockAbstract, BlockClean, BlockDirty, BlockWithComparisonSize, ProfileBlocks}
 class ConvertersTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(this.getClass.getName)
   it should "blockIDProfileIDFromBlock v1" in {

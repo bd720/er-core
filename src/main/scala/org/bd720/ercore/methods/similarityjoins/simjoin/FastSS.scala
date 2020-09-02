@@ -113,7 +113,7 @@ object FastSS {
       results.toIterator
     }
     matches.persist(StorageLevel.MEMORY_AND_DISK)
-   val nc = matches.count()
+    val nc = matches.count()
     log.info("[FastSS] Num candidates  " + nc)
     val t3 = Calendar.getInstance().getTimeInMillis
     log.info("[FastSS] Candidates time (s) " + (t3 - t2) / 1000)

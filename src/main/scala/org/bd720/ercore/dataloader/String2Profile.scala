@@ -1,5 +1,5 @@
-package org.wumiguo.ser.dataloader
-import org.wumiguo.ser.methods.datastructure.{KeyValue, Profile}
+package org.bd720.ercore.dataloader
+import org.bd720.ercore.methods.datastructure.{KeyValue, Profile}
 import scala.collection.mutable
 object String2Profile extends Serializable {
   def string2Profile(x: String): Profile = {

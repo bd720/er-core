@@ -1,4 +1,4 @@
-package org.wumiguo.ser.flow
+package org.bd720.ercore.flow
 import scala.collection.mutable
 object FlowOptions {
   def getOptions(args: Array[String]): Map[String, String] = {

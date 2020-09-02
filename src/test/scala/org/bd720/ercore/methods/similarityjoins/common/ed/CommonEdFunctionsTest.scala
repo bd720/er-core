@@ -1,6 +1,6 @@
-package org.wumiguo.ser.methods.similarityjoins.common.ed
+package org.bd720.ercore.methods.similarityjoins.common.ed
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
+import org.bd720.ercore.common.SparkEnvSetup
 class CommonEdFunctionsTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(getClass.getName)
   it should "getQgramsTf v1 with abnormal input" in {

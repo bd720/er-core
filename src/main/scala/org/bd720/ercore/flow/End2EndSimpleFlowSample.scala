@@ -1,6 +1,7 @@
 package org.bd720.ercore.flow
+import org.apache.spark.sql.SparkSession
 import org.bd720.ercore.common.SparkEnvSetup
-import org.bd720.ercore.dataloader.{CSVProfileLoader, DataTypeResolver, ProfileLoaderFactory}
+import org.bd720.ercore.dataloader.{CSVProfileLoader, DataTypeResolver, GroundTruthLoader, ProfileLoaderFactory}
 import org.bd720.ercore.methods.blockbuilding.TokenBlocking
 import org.bd720.ercore.methods.blockrefinement.pruningmethod.CEP
 import org.bd720.ercore.methods.blockrefinement.{BlockFiltering, BlockPurging}
@@ -12,11 +13,11 @@ object End2EndSimpleFlowSample extends ERFlow with SparkEnvSetup {
   def run(args: Array[String]) = {
     val sourceId1 = 1001
     val sourceId2 = 1002
-    val spark = createLocalSparkSession(getClass.getName)
+    val spark = SparkSession.builder().getOrCreate()
     log.info("launch full end2end flow")
     val gtPath = getClass.getClassLoader.getResource("sampledata/dblpAcmIdDuplicates.mini.gen.csv").getPath
     log.info("load ground-truth from path {}", gtPath)
-    val gtRdd = CSVProfileLoader.loadGroundTruth(gtPath)
+    val gtRdd = GroundTruthLoader.loadGroundTruth(gtPath)
     log.info("gt size is {}", gtRdd.count())
     val startIDFrom = 0
     val separator = ","
@@ -56,7 +57,7 @@ object End2EndSimpleFlowSample extends ERFlow with SparkEnvSetup {
     connected.take(5).foreach(x => log.info("pb-detail-cc connected=" + x))
     val all = connected.flatMap(x => x)
     val similarPairs = all.filter(x => x._3 >= 0.5)
-    val resolvedSimPairs = similarPairs.map(x => (x._1, xndProfileStartIDFrom, x._3))
+    val resolvedSimPairs = similarPairs.map(x => (x._1, x._2 - secondProfileStartIDFrom, x._3))
     import spark.implicits._
     val pwd = System.getProperty("user.dir")
     resolvedSimPairs.toDF.write.csv(pwd + "/output/" + System.currentTimeMillis() + "/data.csv")

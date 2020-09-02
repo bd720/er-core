@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
 trait SlimProfileTrait {
   val id: Int
   val attributes: scala.collection.mutable.MutableList[KeyValue]

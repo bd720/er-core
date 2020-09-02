@@ -1,6 +1,6 @@
-package org.wumiguo.ser.methods.blockrefinement
+package org.bd720.ercore.methods.blockrefinement
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.ProfileBlocks
+import org.bd720.ercore.methods.datastructure.ProfileBlocks
 object BlockFiltering {
   def blockFiltering(profilesWithBlocks: RDD[ProfileBlocks], ratio: Double): RDD[ProfileBlocks] = {
     profilesWithBlocks map {

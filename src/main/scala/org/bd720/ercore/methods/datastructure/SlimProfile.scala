@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
 case class SlimProfile(id: Int, attributes: scala.collection.mutable.MutableList[KeyValue] = new scala.collection.mutable.MutableList(), originalID: String = "", sourceId: Int = 0)
   extends SlimProfileTrait with Serializable {
 }

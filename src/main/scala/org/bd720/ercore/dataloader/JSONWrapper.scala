@@ -1,8 +1,8 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.json.{JSONArray, JSONObject}
-import org.wumiguo.ser.methods.datastructure.{KeyValue, MatchingEntities, Profile}
+import org.bd720.ercore.methods.datastructure.{KeyValue, MatchingEntities, Profile}
 object JSONWrapper {
   def parseData(key: String, data: Any, p: Profile, fieldsToKeep: List[String], realIDField: String): Unit = {
     data match {

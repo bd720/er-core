@@ -1,5 +1,5 @@
 /*
-package org.wumiguo.ser.methods.util
+package org.bd720.ercore.methods.util
 import java.io.Serializable
 import java.util.{PriorityQueue => JPriorityQueue}
 import scala.collection.JavaConverters._

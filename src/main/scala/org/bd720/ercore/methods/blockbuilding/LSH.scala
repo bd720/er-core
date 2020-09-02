@@ -191,7 +191,7 @@ object LSH {
           (attribute, entropy)
       }
       attributesToken.unpersist()
-      log.info(entropyPerAttribute.collect().toLis
+      log.info(entropyPerAttribute.collect().toList)
       val entropyPerCluster = entropyPerAttribute.map {
         case (attribute, entropy) =>
           val clusterID = keyClusterMap.get(attribute) //Obain the cluster ID

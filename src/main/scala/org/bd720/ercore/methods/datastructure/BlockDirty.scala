@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
 case class BlockDirty(blockID: Int, profiles: Array[Set[Int]], var entropy: Double = -1, var clusterID: Integer = -1, blockingKey: String = "") extends BlockAbstract with Serializable {
   override def toString():String={
     "BlockDirty(blockId:" +blockID+

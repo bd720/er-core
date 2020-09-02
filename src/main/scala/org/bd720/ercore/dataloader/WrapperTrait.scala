@@ -1,7 +1,7 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.Row
-import org.wumiguo.ser.methods.datastructure.{KeyValue, MatchingEntities, Profile}
+import org.bd720.ercore.methods.datastructure.{KeyValue, MatchingEntities, Profile}
 import scala.collection.mutable.MutableList
 trait WrapperTrait {
   def loadProfiles(filePath: String, startIDFrom: Int, realIDField: String, sourceId: Int): RDD[Profile]

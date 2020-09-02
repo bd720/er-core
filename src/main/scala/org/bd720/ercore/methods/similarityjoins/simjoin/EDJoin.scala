@@ -90,7 +90,7 @@ object EDJoin {
     val log = LogManager.getRootLogger
     val sortedDocs = CommonEdFunctions.getSortedQgrams2(docs)
     sortedDocs.persist(StorageLevel.MEMORY_AND_DISK)
-    log.info("[EDJoin] sortedcs count " + sortedDocs.count())
+    log.info("[EDJoin] sorted docs count " + sortedDocs.count())
     val ts = Calendar.getInstance().getTimeInMillis
     val prefixIndex = buildPrefixIndex(sortedDocs, qgramLength, threshold)
     prefixIndex.persist(StorageLevel.MEMORY_AND_DISK)

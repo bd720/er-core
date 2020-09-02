@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.blockbuilding
+package org.bd720.ercore.methods.blockbuilding
 object BlockingUtils {
   object TokenizerPattern {
     val DEFAULT_SPLITTING = "[\\W_]"

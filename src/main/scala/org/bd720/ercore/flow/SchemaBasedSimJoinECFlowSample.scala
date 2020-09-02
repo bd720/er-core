@@ -2,27 +2,19 @@ package org.bd720.ercore.flow
 import java.util.Calendar
 import org.apache.log4j.{FileAppender, Level, LogManager, SimpleLayout}
 import org.apache.spark.rdd.RDD
-import org.apache.spark.{SparkConf, SparkContext}
 import org.bd720.ercore.common.SparkEnvSetup
 import org.bd720.ercore.dataloader.{DataTypeResolver, ProfileLoaderFactory, ProfileLoaderTrait}
 import org.bd720.ercore.entity.parameter.DataSetConfig
-import org.bd720.ercore.flow.SchemaBasedSimJoinECFlow.{createLocalSparkSession, getClass}
 import org.bd720.ercore.methods.datastructure.{Profile, WeightedEdge}
 import org.bd720.ercore.methods.entityclustering.ConnectedComponentsClustering
 import org.bd720.ercore.methods.similarityjoins.common.CommonFunctions
 import org.bd720.ercore.methods.similarityjoins.simjoin.{EDJoin, PartEnum}
 import org.bd720.ercore.methods.util.CommandLineUtil
 import scala.collection.mutable.ArrayBuffer
-import scala.reflect.io.File
 object SchemaBasedSimJoinECFlowSample extends ERFlow with SparkEnvSetup {
   private val ALGORITHM_EDJOIN = "EDJoin"
   private val ALGORITHM_PARTENUM = "PartEnum"
   override def run(args: Array[String]): Unit = {
-    val outputDir: File = File("/tmp/data-er")
-    if (!outputDir.exists) {
-      outputDir.createDirectory(true)
-    }
-    val spark = createLocalSparkSession(getClass.getName, outputDir = outputDir.path)
     val dataset1Path = CommandLineUtil.getParameter(args, "dataset1", "datasets/clean/DblpAcm/dataset1.json")
     val dataset1Format = CommandLineUtil.getParameter(args, "dataset1-format", "json")
     val dataset1Id = CommandLineUtil.getParameter(args, "dataset1-id", "realProfileID")
@@ -61,7 +53,7 @@ object SchemaBasedSimJoinECFlowSample extends ERFlow with SparkEnvSetup {
     attributesArray.foreach(attributesTuple => {
       val attributes1 = attributesTuple._1
       val attributes2 = attributesTuple._2
-      val attributesMatch: RDD[(Int, Int =
+      val attributesMatch: RDD[(Int, Int, Double)] =
         algorithm match {
           case ALGORITHM_EDJOIN =>
             val attributes = attributes1.union(attributes2)

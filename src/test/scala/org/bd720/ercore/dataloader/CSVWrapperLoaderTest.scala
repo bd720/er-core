@@ -1,7 +1,7 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.testutil.TestDirs
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.testutil.TestDirs
 class CSVWrapperLoaderTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(getClass.getName)
   it should " be able to load good entity profiles csv" in {

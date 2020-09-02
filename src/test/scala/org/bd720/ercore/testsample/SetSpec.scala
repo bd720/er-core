@@ -1,4 +1,4 @@
-package org.wumiguo.ser.testsample
+package org.bd720.ercore.testsample
 import java.util.NoSuchElementException
 import org.scalatest.FlatSpec
 class SetSpec extends FlatSpec {

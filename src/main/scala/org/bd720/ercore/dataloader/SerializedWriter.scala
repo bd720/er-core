@@ -1,6 +1,6 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import java.io.{FileInputStream, FileOutputStream, ObjectInputStream, ObjectOutputStream}
-import org.wumiguo.ser.model.{EntityProfile, IdDuplicates}
+import org.bd720.ercore.model.{EntityProfile, IdDuplicates}
 object SerializedWriter extends scala.AnyRef {
   def serializedGroundTruth(fileName: scala.Predef.String, data: java.util.HashSet[IdDuplicates]) = serializedObject(fileName, data)
   def serializedEntityProfiles(fileName: scala.Predef.String, data: java.util.ArrayList[EntityProfile]) = serializedObject(fileName, data)

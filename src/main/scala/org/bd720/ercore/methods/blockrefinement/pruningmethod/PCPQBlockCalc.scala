@@ -103,7 +103,7 @@ object PCPQBlockCalc {
       var neighboursNumber = 0
       partition.map { pb =>
         neighboursNumber = calcNeighbors(pb, blockIndex, separatorID, localWeights, neighbours)
-        val result = doPruning(pb.proeID, neighbours, neighboursNumber, groundtruth)
+        val result = doPruning(pb.profileID, neighbours, neighboursNumber, groundtruth)
         doReset(localWeights, neighbours, neighboursNumber)
         result
       }

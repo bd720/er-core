@@ -1,6 +1,6 @@
-package org.wumiguo.ser.methods.similarityjoins.common.ed
+package org.bd720.ercore.methods.similarityjoins.common.ed
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.similarityjoins.datastructure.Qgram
+import org.bd720.ercore.methods.similarityjoins.datastructure.Qgram
 object CommonEdFunctions {
   object commons {
     def fixPrefix: (Int, Int) = (-1, -1)

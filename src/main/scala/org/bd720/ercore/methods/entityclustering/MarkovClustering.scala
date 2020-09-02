@@ -123,7 +123,7 @@ object MarkovClustering extends EntityClusteringTrait {
   }
   def getClusters(profiles: RDD[Profile], edges: RDD[WeightedEdge], maxProfileID: Int, edgesThreshold: Double, separatorID: Int, similarityChecksLimit: Int,
                   matrixSimThreshold: Double, clusterThreshold: Double): RDD[(Int, Set[Int])] = {
-    val cc = connectedComponents(edges.fir(_.weight > edgesThreshold))
+    val cc = connectedComponents(edges.filter(_.weight > edgesThreshold))
     val res = cc.mapPartitions { partition =>
       var result: List[WeightedEdge] = Nil
       partition.foreach { cluster =>

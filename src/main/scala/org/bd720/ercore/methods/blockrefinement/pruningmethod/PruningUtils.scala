@@ -80,7 +80,7 @@ object PruningUtils {
               if (profileID < arrayVicini(i)) { //Aumento il contatore solo se id profiloattuale < id vicino, così li conta una volta sola
                 cont += 1
               }
-              if (groundtruth.value.contains((profileID, arrayVicini(i)))) { //Il groundtruth è organizzato comeID dataset1, ID dataset2), quindi devo cercare il profilo con ID minore
+              if (groundtruth.value.contains((profileID, arrayVicini(i)))) { //Il groundtruth è organizzato come (ID dataset1, ID dataset2), quindi devo cercare il profilo con ID minore
                 edges = UnweightedEdge(profileID, arrayVicini(i)) :: edges //Genero l'edge che voglio tenere
               }
               else if (groundtruth.value.contains((arrayVicini(i), profileID))) {

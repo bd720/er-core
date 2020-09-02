@@ -106,7 +106,7 @@ object MatchingFunctions {
     var allKeys = maxItemVector.keySet
     allKeys ++= minItemVector.keySet
     val denominator = allKeys
-      .map(key =>h.max(minItemVector.getOrElse(key, 0).toDouble / maxTotalTerms, minItemVector.getOrElse(key, 0).toDouble / minTotalTerms))
+      .map(key => Math.max(minItemVector.getOrElse(key, 0).toDouble / maxTotalTerms, minItemVector.getOrElse(key, 0).toDouble / minTotalTerms))
       .sum
     numerator / denominator
   }

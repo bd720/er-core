@@ -96,7 +96,7 @@ class EDJoinTest extends FlatSpec with SparkEnvSetup {
   }
   it should "getCandidatePairs" in {
     val prefixIndex = spark.sparkContext.parallelize(
-      Seq[(Int, Arrayt, Int, Array[(Int, Int)], String)])](
+      Seq[(Int, Array[(Int, Int, Array[(Int, Int)], String)])](
         (1, Array((1, 1, Array((1, 1)), ""))),
         (2, Array((1, 1, Array((1, 1)), "")))
       )

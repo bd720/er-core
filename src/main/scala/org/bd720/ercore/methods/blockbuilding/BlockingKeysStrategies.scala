@@ -114,7 +114,7 @@ object BlockingKeysStrategies {
     else {
       val limit: Int = blockingKey.length - minimumLength + 1
       for (i <- 0 until limit) {
-        suffixes = blockingKey.substring(i:: suffixes
+        suffixes = blockingKey.substring(i) :: suffixes
       }
     }
     suffixes.toSet

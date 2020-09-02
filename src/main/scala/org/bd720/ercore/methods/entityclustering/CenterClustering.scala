@@ -87,7 +87,7 @@ object CenterClustering extends EntityClusteringTrait {
             }
           }
           else if ((uIsCenter && vIsCenter) || (uIsNonCenter && vIsNonCenter)) {}
-          else if (uIsCenter && !vIsnCenter) {
+          else if (uIsCenter && !vIsNonCenter) {
             clusters.put(u, clusters(u.toInt) + v)
             visited.update(v.toInt, true)
           }

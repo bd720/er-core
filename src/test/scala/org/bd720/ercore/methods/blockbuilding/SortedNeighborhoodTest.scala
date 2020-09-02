@@ -1,9 +1,9 @@
-package org.wumiguo.ser.methods.blockbuilding
+package org.bd720.ercore.methods.blockbuilding
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.dataloader.String2Profile
-import org.wumiguo.ser.methods.datastructure.{KeyValue, Profile}
-import org.wumiguo.ser.testutil.TestDirs
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.dataloader.String2Profile
+import org.bd720.ercore.methods.datastructure.{KeyValue, Profile}
+import org.bd720.ercore.testutil.TestDirs
 import scala.collection.mutable
 class SortedNeighborhoodTest
   extends FlatSpec

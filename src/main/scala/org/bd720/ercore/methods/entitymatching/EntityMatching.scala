@@ -88,7 +88,7 @@ object EntityMatching {
                 .filter(profilesMap1.contains)
                 .map(profilesMap1(_))
                 .map(matcher(profile1, _))
-                .filter(_.weight >=.5)
+                .filter(_.weight >= 0.5)
             }
         }
       wEdges.foreach(x=>println("+ wEdges="+x))

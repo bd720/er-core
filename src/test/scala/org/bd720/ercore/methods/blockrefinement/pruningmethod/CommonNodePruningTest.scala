@@ -1,8 +1,8 @@
-package org.wumiguo.ser.methods.blockrefinement.pruningmethod
+package org.bd720.ercore.methods.blockrefinement.pruningmethod
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.common.SparkEnvSetup
-import org.wumiguo.ser.methods.blockrefinement.pruningmethod.PruningUtils.WeightTypes
-import org.wumiguo.ser.methods.datastructure.{BlockWithComparisonSize, ProfileBlocks}
+import org.bd720.ercore.common.SparkEnvSetup
+import org.bd720.ercore.methods.blockrefinement.pruningmethod.PruningUtils.WeightTypes
+import org.bd720.ercore.methods.datastructure.{BlockWithComparisonSize, ProfileBlocks}
 class CommonNodePruningTest extends FlatSpec with SparkEnvSetup {
   val spark = createLocalSparkSession(getClass.getName)
   it should "calcWeights" in {

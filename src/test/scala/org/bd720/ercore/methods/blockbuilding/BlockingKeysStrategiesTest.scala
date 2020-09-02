@@ -1,6 +1,6 @@
-package org.wumiguo.ser.methods.blockbuilding
+package org.bd720.ercore.methods.blockbuilding
 import org.scalatest.FlatSpec
-import org.wumiguo.ser.methods.datastructure.KeyValue
+import org.bd720.ercore.methods.datastructure.KeyValue
 import scala.collection.mutable
 class BlockingKeysStrategiesTest extends FlatSpec {
   it should " createKeysFromProfileAttributes " in {

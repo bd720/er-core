@@ -1,4 +1,4 @@
-package org.wumiguo.ser.common
+package org.bd720.ercore.common
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.slf4j.LoggerFactory

@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
 import org.scalatest.FlatSpec
 class BlockCleanTest extends FlatSpec {
   it should " create clean block 1 " in {

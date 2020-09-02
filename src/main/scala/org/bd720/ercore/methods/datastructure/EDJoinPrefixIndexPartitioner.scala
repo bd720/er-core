@@ -1,4 +1,4 @@
-package org.wumiguo.ser.methods.datastructure
+package org.bd720.ercore.methods.datastructure
 import org.apache.spark.Partitioner
 class EDJoinPrefixIndexPartitioner(numPart: Int) extends Partitioner {
   val load = Array.fill[Double](numPart)(0.0)

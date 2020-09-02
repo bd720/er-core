@@ -1,4 +1,4 @@
-package org.wumiguo.ser.entity.parameter
+package org.bd720.ercore.entity.parameter
 import scala.beans.BeanProperty
 class ProfileConfig {
   @BeanProperty

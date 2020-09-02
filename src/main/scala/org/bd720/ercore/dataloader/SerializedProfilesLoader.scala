@@ -1,8 +1,8 @@
-package org.wumiguo.ser.dataloader
+package org.bd720.ercore.dataloader
 import java.io._
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-import org.wumiguo.ser.methods.datastructure.Profile
+import org.bd720.ercore.methods.datastructure.Profile
 object SerializedProfilesLoader {
   def loadProfiles(filePath: String, chunkSize: Int = 10000, startIDFrom: Int = -1, sourceId: Int = 0): RDD[Profile] = {
     val sc = SparkContext.getOrCreate()

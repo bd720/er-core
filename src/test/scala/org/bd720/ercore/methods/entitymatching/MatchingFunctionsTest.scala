@@ -73,7 +73,7 @@ class MatchingFunctionsTest extends FlatSpec {
     val attrs1 = mutable.MutableList[KeyValue](
       KeyValue("title", "let's start to write some java code"),
       KeyValue("year", "2020"),
-      KeyValue("ab "simple coding course"),
+      KeyValue("abs", "simple coding course"),
       KeyValue("tag", "java code develop"),
       KeyValue("category", "engineering & code"),
       KeyValue("auth", "lev"))
