@@ -81,7 +81,6 @@ hs_err_pid*
 /project/target/
 /target/
 
-ACMlog.txt
 /*.log.*
 
 er-spark.iml

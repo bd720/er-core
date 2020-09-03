@@ -1,0 +1,10 @@
+p_id,p_name,type,remark,system_id
+PU1001,FinTechETF,fund,"FinTech ETF",CTENCGG
+PA1002,EmergingEnergy,fund,"NEW Financial PRD",CALIBB
+PE1003,BCTech,fund,"BitCoin IT",CTENCGG
+PB2004,SMETF,fund,"SM",CTENCGG
+PA1005,GSFund,fund,"GS",CALIBB
+PU1006,FunStock,fund,"FUNNY stock",CALIBB
+PA1007,GOOGF,fund,"GOOGLE Angel Fund",CALIBB
+PG1008,APLF,bond,"APPLE Long-term Invest Fund",CTENCGG
+PG1009,AMZLF,bond,"AMZ Long-term Invest Fund",CALIBB

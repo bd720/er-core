@@ -1,0 +1,3 @@
+id=1|originalID=100|sourceId=1|attrs=[id=304586;title=The WASA2 object-oriented workflow management system;author=Gottfried vossen, Mathias Weske;year=1999]
+id=2|originalID=101|sourceId=2|attrs=[id=305961;title=The microservice architecture;author=Levin Liu;year=2020]
+id=3|originalID=102|sourceId=3|attrs=[id=512781;title=The DAS design;author=John Li;year=2020]

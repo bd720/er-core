@@ -1,6 +1,6 @@
 name := "er-spark"
 
-organization := "org.wumiguo"
+organization := "org.bd720"
 
 version := "0.1"
 
@@ -56,7 +56,7 @@ libraryDependencies += "org.scalactic" %% "scalactic" % scalaTestVersion
 
 libraryDependencies += "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
 
-mainClass in Compile := Some("org.wumiguo.ser.ERFlowLauncher")
+mainClass in Compile := Some("org.bd720.ercore.ERFlowLauncher")
 
 jacocoReportSettings := JacocoReportSettings()
   .withTitle("CodeCoverage")
