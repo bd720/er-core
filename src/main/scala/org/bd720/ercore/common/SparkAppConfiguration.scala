@@ -5,4 +5,6 @@ class SparkAppConfiguration {
   @BeanProperty var master: String = ""
   @BeanProperty var enableHiveSupport: Boolean = false
   @BeanProperty var options: mutable.Map[String, String] = mutable.Map()
+  override def toString: String = s"SparkAppConfiguration(master: $master, enableHiveSupport: $enableHiveSupport," +
+    s" options: $options)"
 }
