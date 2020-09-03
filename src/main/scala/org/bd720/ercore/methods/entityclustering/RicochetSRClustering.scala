@@ -2,7 +2,6 @@ package org.bd720.ercore.methods.entityclustering
 import org.apache.spark.rdd.RDD
 import EntityClusterUtils.{addUnclusteredProfiles, connectedComponents}
 import org.bd720.ercore.methods.datastructure.{Profile, VertexWeight, WeightedEdge}
-/*
 object RicochetSRClustering extends EntityClusteringTrait {
   override def getClusters(profiles: RDD[Profile], edges: RDD[WeightedEdge], maxProfileID: Int, edgesThreshold: Double, separatorID: Int): RDD[(Int, Set[Int])] = {
     val cc = connectedComponents(edges.filter(_.weight > edgesThreshold))
@@ -18,8 +17,6 @@ object RicochetSRClustering extends EntityClusteringTrait {
       }
       val elements = Array.ofDim[Int](maxProfileID + 1)
       var numElements = 0
-      /* --------------------------------------------------------------------- */
-      /* Generated clusters */
       val clusters = scala.collection.mutable.Map[Int, scala.collection.mutable.HashSet[Int]]()
       val simWithCenter = Array.fill[Double](maxProfileID + 1) {
         0

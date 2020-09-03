@@ -60,14 +60,14 @@ object PPJoin {
           val doc1Id = docs(i)._1
           val doc1Tokens = docs(i)._2
           val doc1PrefixLen = JsFilters.getPrefixLength(doc1Tokens.length, threshold)
-          while ((j < docs.length) && (doc1Tokens.length >= docs(j)._2.length * threshold)) { //Length filter
+          while ((j < docs.length) && (doc1Tokens.length >= docs(j)._2.length * threshold)) { 
             val doc2Id = docs(j)._1
             if (separatorID < 0 || ((doc1Id <= separatorID && doc2Id > separatorID) || (doc2Id <= separatorID && doc1Id > separatorID))) {
               val doc2Tokens = docs(j)._2
               val doc2PrefixLen = JsFilters.getPrefixLength(doc2Tokens.length, threshold)
               val (p1, p2, isLastCommon) = lastCommonTokenPosition(doc1Tokens, doc2Tokens, tokenId, doc1PrefixLen, doc2PrefixLen)
               if (isLastCommon) {
-                val common = getCommonElementsInPrefix(doc1Tokens, doc2Tokens, p1, p2) //Number of common elements in the prefix
+                val common = getCommonElementsInPrefix(doc1Tokens, doc2Tokens, p1, p2) 
                 if (JsFilters.positionFilter(doc1Tokens.length, doc2Tokens.length, p1 + 1, p2 + 1, common, threshold)) {
                   if (doc1Id < doc2Id) {
                     results.add(((doc1Id, doc1Tokens), (doc2Id, doc2Tokens)))

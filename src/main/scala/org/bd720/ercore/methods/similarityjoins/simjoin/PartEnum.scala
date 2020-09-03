@@ -6,8 +6,8 @@ import org.bd720.ercore.methods.similarityjoins.datastructure.Category
 import scala.collection.mutable.ArrayBuffer
 import scala.util.control.Breaks._
 object PartEnum {
-  private val MAX_LEN = 3300 // the max size of the candidate string
-  private val MAX_CATEGORY = 100 // max slice of the string, usually won't reach this limit
+  private val MAX_LEN = 3300 
+  private val MAX_CATEGORY = 100 
   def getCategories(threshold: Double, maxLen: Int): ArrayBuffer[Category] = {
     val categories = ArrayBuffer[Category]()
     var len = 1

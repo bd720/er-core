@@ -18,29 +18,24 @@ object TokenBlocking {
                    keysToExclude: Iterable[String] = Nil,
                    removeStopWords: Boolean = false,
                    createKeysFunctions: (Iterable[KeyValue], Iterable[String]) => Iterable[String] = BlockingKeysStrategies.createKeysFromProfileAttributes): RDD[BlockAbstract] = {
-    /* For each profile returns the list of his tokens, produces (profileID, [list of tokens]) */
     val tokensPerProfile = profiles.map(profile => (profile.id, createKeysFunctions(profile.attributes, keysToExclude).filter(_.trim.length > 0).toSet))
-    /* Associate each profile to each token, produces (tokenID, [list of profileID]) */
     val a = if (removeStopWords) {
       removeBadWords(tokensPerProfile.flatMap(BlockingUtils.associateKeysToProfileID))
     } else {
       tokensPerProfile.flatMap(BlockingUtils.associateKeysToProfileID)
     }
     val profilePerKey = a.groupByKey().filter(_._2.size > 1)
-    /* For each token divides the profiles in two lists according to the datasets they come from (only for Clean-Clean) */
     val profilesGrouped = profilePerKey.map {
       c =>
         val entityIds = c._2.toSet
         val blockEntities = if (separatorIDs.isEmpty) Array(entityIds) else TokenBlocking.separateProfiles(entityIds, separatorIDs)
         blockEntities
     }
-    /* Removes blocks that contains only one profile, and associate an unique ID to each block */
     val profilesGroupedWithIds = profilesGrouped filter {
       block =>
         if (separatorIDs.isEmpty) block.head.size > 1
         else block.count(_.nonEmpty) > 1
     } zipWithIndex()
-    /* Map each row in an object BlockClean or BlockDirty */
     profilesGroupedWithIds map {
       case (entityIds, blockId) =>
         if (separatorIDs.isEmpty)
@@ -58,22 +53,19 @@ object TokenBlocking {
     val defaultClusterID = clusters.maxBy(_.id).id
     val entropies = clusters.map(cluster => (cluster.id, cluster.entropy)).toMap
     val clusterMap = clusters.flatMap(c => c.keys.map(key => (key, c.id))).toMap
-    /* Generates the tokens for each profile */
     val tokensPerProfile1 = profiles.map {
       profile =>
-        /* Calculates the dataset to which this token belongs */
         val dataset = profile.sourceId + clusterNameSeparator
-        /* Generates the tokens for this profile */
         val tokens = profile.attributes.flatMap {
           keyValue =>
             if (keysToExclude.exists(_.equals(keyValue.key))) {
               Nil
             }
             else {
-              val key = dataset + keyValue.key //Add the dataset suffix to the key
-              val clusterID = clusterMap.getOrElse(key, defaultClusterID) //Gets the id of this key cluster, if it not exists returns the default one
-              val values = keyValue.value.split(BlockingUtils.TokenizerPattern.DEFAULT_SPLITTING).map(_.toLowerCase.trim).filter(_.trim.nonEmpty).distinct //Split the values and obtain the tokens
-              values.map(_ + "_" + clusterID).map(x => (x, key)) //Add the cluster id to the tokens
+              val key = dataset + keyValue.key 
+              val clusterID = clusterMap.getOrElse(key, defaultClusterID) 
+              val values = keyValue.value.split(BlockingUtils.TokenizerPattern.DEFAULT_SPLITTING).map(_.toLowerCase.trim).filter(_.trim.nonEmpty).distinct 
+              values.map(_ + "_" + clusterID).map(x => (x, key)) 
             }
         }.filter(x => x._1.nonEmpty)
         (profile.id, tokens)
@@ -84,7 +76,6 @@ object TokenBlocking {
       }
     }.groupByKey().map(x => (x._1, x._2.groupBy(_._1).map(y => (y._1, y._2.map(_._2))))).collectAsMap()
     val tokensPerProfile = tokensPerProfile1.map(x => (x._1, x._2.map(_._1).distinct))
-    /* Associate each profile to each token, produces (tokenID, [list of profileID]) */
     val profilePerKey = {
       if (excludeDefaultCluster) {
         tokensPerProfile.flatMap(BlockingUtils.associateKeysToProfileID).groupByKey().filter(!_._1.endsWith("_" + defaultClusterID))
@@ -93,7 +84,6 @@ object TokenBlocking {
         tokensPerProfile.flatMap(BlockingUtils.associateKeysToProfileID).groupByKey()
       }
     }
-    /* For each tokens divides the profiles in two lists according to the original datasets where they come (in case of Clean-Clean) */
     val profilesGrouped = profilePerKey map {
       case (blockingKey, entityIds) =>
         val blockEntities = {
@@ -117,13 +107,11 @@ object TokenBlocking {
         }
         (blockEntities, entropy, clusterID, blockingKey)
     }
-    /* Removes blocks that contains only one profile, and associate an unique ID to each block */
     val profilesGroupedWithIds = profilesGrouped filter {
       case (block, entropy, clusterID, blockingKey) =>
         if (separatorIDs.isEmpty) block.head.size > 1
         else block.count(_.nonEmpty) > 1
     } zipWithIndex()
-    /* Map each row in an object BlockClean or BlockDirty */
     val blocks: RDD[BlockAbstract] = profilesGroupedWithIds map {
       case ((entityIds, entropy, clusterID, blockingKey), blockId) =>
         if (separatorIDs.isEmpty) datastructure.BlockDirty(blockId.toInt, entityIds, entropy, clusterID, blockingKey = blockingKey)
@@ -142,24 +130,21 @@ object TokenBlocking {
     val clusterMap = clusters.flatMap(c => c.keys.map(key => (key, c.id))).toMap
     val tokensPerProfile = profiles.map {
       profile =>
-        /* Calculates the dataset to which this token belongs */
         val dataset = profile.sourceId + clusterNameSeparator
-        /* Generates the tokens for this profile */
         val tokens = profile.attributes.flatMap {
           keyValue =>
             if (keysToExclude.exists(_.equals(keyValue.key))) {
               Nil
             }
             else {
-              val key = dataset + keyValue.key //Add the dataset suffix to the key
-              val clusterID = clusterMap.getOrElse(key, defaultClusterID) //Gets the id of this key cluster, if it not exists returns the default one
-              val values = keyValue.value.split(BlockingUtils.TokenizerPattern.DEFAULT_SPLITTING).map(_.toLowerCase.trim).filter(_.trim.nonEmpty).distinct //Split the values and obtain the tokens
-              values.map(_ + "_" + clusterID) //Add the cluster id to the tokens
+              val key = dataset + keyValue.key 
+              val clusterID = clusterMap.getOrElse(key, defaultClusterID) 
+              val values = keyValue.value.split(BlockingUtils.TokenizerPattern.DEFAULT_SPLITTING).map(_.toLowerCase.trim).filter(_.trim.nonEmpty).distinct 
+              values.map(_ + "_" + clusterID) 
             }
         }.filter(_.nonEmpty)
         (profile.id, tokens.distinct)
     }
-    /* Associate each profile to each token, produces (tokenID, [list of profileID]) */
     val profilePerKey = {
       if (excludeDefaultCluster) {
         tokensPerProfile.flatMap(BlockingUtils.associateKeysToProfileID).groupByKey().filter(!_._1.endsWith("_" + defaultClusterID))
@@ -168,7 +153,6 @@ object TokenBlocking {
         tokensPerProfile.flatMap(BlockingUtils.associateKeysToProfileID).groupByKey()
       }
     }
-    /* For each tokens divides the profiles in two lists according to the original datasets where they come (in case of Clean-Clean) */
     val profilesGrouped = profilePerKey map {
       case (blockingKey, entityIds) =>
         val blockEntities = {
@@ -197,13 +181,11 @@ object TokenBlocking {
         }
         (blockEntities, entropy, clusterID, blockingKey)
     }
-    /* Removes blocks that contains only one profile, and associate an unique ID to each block */
     val profilesGroupedWithIds = profilesGrouped filter {
       case (block, entropy, clusterID, blockingKey) =>
         if (separatorIDs.isEmpty) block.head.size > 1
         else block.count(_.nonEmpty) > 1
     } zipWithIndex()
-    /* Map each row in an object BlockClean or BlockDirty */
     profilesGroupedWithIds map {
       case ((entityIds, entropy, clusterID, blockingKey), blockId) =>
         if (separatorIDs.isEmpty) datastructure.BlockDirty(blockId.toInt, entityIds, entropy, clusterID, blockingKey = blockingKey)

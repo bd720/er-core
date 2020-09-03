@@ -34,18 +34,6 @@ object BlockingKeysStrategies {
         value.sliding(ngramSize)
     }
     ngrams.filter(_.trim.length > 0)
-    /*attributes.map {
-      at =>
-        if (keysToExclude.exists(_.equals(at.key))) {
-          ""
-        }
-        else {
-          at.value.toLowerCase.trim.replace(" ", "_")
-        }
-    } filter (_.trim.length > 0) flatMap {
-      value =>
-        value.sliding(ngramSize)
-    }*/
   }
   def createSuffixesFromProfileAttributes(attributes: Iterable[KeyValue], keysToExclude: Iterable[String] = Nil): Iterable[String] = {
     val tokens = createKeysFromProfileAttributes(attributes, keysToExclude)
@@ -105,7 +93,6 @@ object BlockingKeysStrategies {
       res
     }
   }
-  /*
   def getSuffixes(minimumLength: Int, blockingKey: String): Set[String] = {
     var suffixes: List[String] = Nil
     if (blockingKey.length < minimumLength) {

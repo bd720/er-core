@@ -47,17 +47,6 @@ object EntityClusterUtils {
         }
       }
     }
-    /*val edgesG = weightedEdges.map(e =>
-      Edge(e.firstProfileID, e.secondProfileID, e.weight)
-    )
-    val graph = Graph.fromEdges(edgesG, -1)
-    val cc = graph.connectedComponents()
-    val connectedComponents = cc.triplets.map(t => (t.dstAttr, t)).groupByKey().map { case (_, data) =>
-      data.map { edge =>
-        (edge.toTuple._1._1.asInstanceOf[Int], edge.toTuple._2._1.asInstanceOf[Int], edge.toTuple._3.asInstanceOf[Double])
-      }
-    }
-    connectedComponents*/
   }
   def calcPcPqCluster(clusters: RDD[(Int, Set[Int])], gtBroadcast: Broadcast[Set[(Int, Int)]], separatorID: Int = -1): (Double, Double) = {
     val numMatches = clusters.context.doubleAccumulator("numMatches")

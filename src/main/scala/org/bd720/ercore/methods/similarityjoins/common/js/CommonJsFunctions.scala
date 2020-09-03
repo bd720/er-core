@@ -5,7 +5,7 @@ import org.bd720.ercore.methods.datastructure.Profile
 import org.bd720.ercore.methods.similarityjoins.datastructure.TokenDocumentInfo
 object CommonJsFunctions {
   def tokenize(document: String): Set[String] = {
-    document.split("[\\W_]").map(_.trim.toLowerCase).filter(_.length > 0).toSet //.filter(x => !stopWords.contains(x)).toSet
+    document.split("[\\W_]").map(_.trim.toLowerCase).filter(_.length > 0).toSet 
   }
   def prepareData(profiles: RDD[Profile], fields: List[String] = List.empty[String]): RDD[(Int, Array[Int])] = {
     val docs = profiles.map { p =>
@@ -33,10 +33,10 @@ object CommonJsFunctions {
     def add(acc: Double, e: Double): Double = acc + e
     def merge(acc1: Double, acc2: Double): Double = acc1 + acc2
     tokenizedDocuments
-      .flatMap { case (documentId, valueSet) => valueSet.map { token => (token, 1.0) } } // emit (token, 1)
-      .combineByKey(create, add, merge) // token count (~ word count)
-      .sortBy(x => (x._2, x._1)) // sort token by count
-      .zipWithIndex() // less frequent token will have lower index
+      .flatMap { case (documentId, valueSet) => valueSet.map { token => (token, 1.0) } } 
+      .combineByKey(create, add, merge) 
+      .sortBy(x => (x._2, x._1)) 
+      .zipWithIndex() 
       .map { case ((token, tokenCount), tokenId) => (token, (tokenCount, tokenId.toInt)) }
   }
   def sortTokens(tokenizedDocuments: RDD[(Int, Set[String])],
@@ -46,7 +46,7 @@ object CommonJsFunctions {
         token =>
           val tokenCountId = tekenCount_broadcast.value(token)
           tokenCountId._2
-      }.sorted // the id of the token are assigned from the least frequent to the most frequent
+      }.sorted 
       (documentID, sortedTokenIDs)
     }
   }

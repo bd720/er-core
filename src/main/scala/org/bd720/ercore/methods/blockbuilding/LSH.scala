@@ -194,7 +194,7 @@ object LSH {
       log.info(entropyPerAttribute.collect().toList)
       val entropyPerCluster = entropyPerAttribute.map {
         case (attribute, entropy) =>
-          val clusterID = keyClusterMap.get(attribute) //Obain the cluster ID
+          val clusterID = keyClusterMap.get(attribute) 
           if (clusterID.isDefined) {
             (clusterID.get, entropy)
           }
@@ -212,7 +212,6 @@ object LSH {
           0.0
         }
       }
-      /* Compose everything together */
       clusters.map {
         case (keys, clusterID) =>
           val entropy = {
@@ -241,7 +240,6 @@ object LSH {
                    separatorIDs: Array[Int] = Array.emptyIntArray, keysToExclude: Iterable[String] = Nil): RDD[BlockAbstract] = {
     @transient lazy val log = org.apache.log4j.LogManager.getRootLogger
     val t0 = Calendar.getInstance()
-    /* Generate the tokens */
     val profilesToken: RDD[(Int, String)] = profiles.flatMap {
       profile =>
         val attributes = profile.attributes.filter(kv => !keysToExclude.exists(_.equals(kv.key)))
@@ -280,7 +278,6 @@ object LSH {
       (attribute, buckets)
     }
     val profilesPerBucket = buckets.flatMap(x => x._2.map((_, x._1))).groupByKey().map(x => (x._1, x._2.toSet)).filter(x => x._2.size > 1).distinct()
-    /* Transform each bucket in blocks */
     profilesPerBucket.map {
       case (bucketID, profileIDs) =>
         if (separatorIDs.isEmpty) {

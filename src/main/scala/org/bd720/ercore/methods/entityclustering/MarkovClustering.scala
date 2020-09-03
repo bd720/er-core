@@ -59,9 +59,6 @@ object MarkovClustering extends EntityClusteringTrait {
     val t2 = Calendar.getInstance().getTimeInMillis
     for (i <- inputMatrix.indices) {
       System.arraycopy(input(i), 0, inputMatrix(i), 0, inputMatrix(0).length)
-      /*for (j <- inputMatrix(i).indices) {
-        inputMatrix(i).update(j, input(i)(j))
-      }*/
     }
     val t3 = Calendar.getInstance().getTimeInMillis
   }

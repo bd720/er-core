@@ -35,7 +35,7 @@ object CommonNodePruning {
               val neighbourID = secondProfileID
               val neighbourWeight = localWeights(neighbourID)
               localWeights.update(neighbourID, neighbourWeight + 1)
-              if (neighbourWeight == 1) {//Todo: per me deve essere == 0 non == 1
+              if (neighbourWeight == 1) {
                 neighbours.update(neighboursNumber, neighbourID)
                 neighboursNumber += 1
                 if (profileID < neighbourID) {

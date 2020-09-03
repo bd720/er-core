@@ -2,7 +2,7 @@ package org.bd720.ercore.methods.similarityjoins.datastructure
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 class Category extends Serializable {
-  var THRESHOLD: Double = 0.000001f //by default no filter out, set a default number instead of Null
+  var THRESHOLD: Double = 0.000001f 
   var N1: Int = 0
   var N2: Int = 0
   var K: Int = 0
@@ -17,8 +17,8 @@ class Category extends Serializable {
   def this(len: Int, threshold: Double) {
     this()
     THRESHOLD = threshold
-    s_len = len // the start of the this subset of string
-    e_len = (s_len / THRESHOLD).toInt // the end of the this subset of string
+    s_len = len 
+    e_len = (s_len / THRESHOLD).toInt 
     K = (2 * (1 - THRESHOLD) / (1 + THRESHOLD) * e_len.toDouble).toInt
     N1 = K + 1
     N2 = 2

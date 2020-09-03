@@ -10,7 +10,6 @@ object CommonFunctions {
   def extractField(profiles: RDD[Profile], fieldName: String): RDD[(Int, String)] = {
     log.debug("extract field {}", fieldName)
     profiles.map { profile =>
-      log.debug("profile-attributes=" + profile.attributes.map(_.key).toList)
       (profile.id, profile.attributes.filter(_.key == fieldName).map(_.value).mkString(" ").toLowerCase)
     }.filter(!_._2.trim.isEmpty)
   }

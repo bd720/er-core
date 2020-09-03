@@ -42,54 +42,54 @@ object PruningUtils {
       partition =>
         val arrayPesi = Array.fill[Int](maxID + 1) {
           0
-        } //Usato per memorizzare i pesi di ogni vicino
-        val arrayVicini = Array.ofDim[Int](maxID + 1) //Usato per tenere gli ID dei miei vicini
-        var numeroVicini = 0 //Memorizza il numero di vicini che ho
-        partition map { //Mappo gli elementi contenuti nella partizione sono: [id profilo, blocchi]
+        } 
+        val arrayVicini = Array.ofDim[Int](maxID + 1) 
+        var numeroVicini = 0 
+        partition map { 
           pb =>
-            val profileID = pb.profileID //ID PROFILO
-            val blocchiInCuiCompare = pb.blocks //Blocchi in cui compare questo profilo
-            blocchiInCuiCompare foreach { //Per ognuno dei blocchi in cui compare
+            val profileID = pb.profileID 
+            val blocchiInCuiCompare = pb.blocks 
+            blocchiInCuiCompare foreach { 
               block =>
-                val idBlocco = block.blockID //ID BLOCCO
-                val profiliNelBlocco = blockIndex.value.get(idBlocco) //Leggo gli ID di tutti gli altri profili che sono in quel blocco
+                val idBlocco = block.blockID 
+                val profiliNelBlocco = blockIndex.value.get(idBlocco) 
                 if (profiliNelBlocco.isDefined) {
                   val profiliCheContiene = {
-                    if (separatorID >= 0 && profileID <= separatorID) { //Se siamo in un contesto clean e l'id del profilo appartiene al dataset1, i suoi vicini sono nel dataset2
+                    if (separatorID >= 0 && profileID <= separatorID) { 
                       profiliNelBlocco.get._2
                     }
                     else {
-                      profiliNelBlocco.get._1 //Altrimenti sono nel dataset1
+                      profiliNelBlocco.get._1 
                     }
                   }
-                  profiliCheContiene foreach { //Per ognuno dei suoi vicini in questo blocco
+                  profiliCheContiene foreach { 
                     secondProfileID =>
-                      val vicino = secondProfileID.toInt //ID del vicino
-                      val pesoAttuale = arrayPesi(vicino) //Leggo il peso attuale che ha questo vicino
-                      if (pesoAttuale == 0) { //Se è 0 vuol dire che non l'avevo mai trovato prima
-                        arrayVicini.update(numeroVicini, vicino) //Aggiungo all'elenco dei vicini questo nuovo vicino
-                        arrayPesi.update(vicino, 1) //Aggiorno il suo peso ad 1
-                        numeroVicini = numeroVicini + 1 //Incremento il numero di vicini
+                      val vicino = secondProfileID.toInt 
+                      val pesoAttuale = arrayPesi(vicino) 
+                      if (pesoAttuale == 0) { 
+                        arrayVicini.update(numeroVicini, vicino) 
+                        arrayPesi.update(vicino, 1) 
+                        numeroVicini = numeroVicini + 1 
                       }
                   }
                 }
             }
-            var cont = 0 //Contatore che legge quanti vicini mantengo
-            var edges: List[UnweightedEdge] = Nil //Edge che verrà dato in uscita per questo profilo che corrisponde ad un match nel dataset 2 (solo se lo trova), va bene solo se clean sto metodo!
-            for (i <- 0 to numeroVicini - 1) { //Scorro i vicini che ho trovato
-              if (profileID < arrayVicini(i)) { //Aumento il contatore solo se id profiloattuale < id vicino, così li conta una volta sola
+            var cont = 0 
+            var edges: List[UnweightedEdge] = Nil 
+            for (i <- 0 to numeroVicini - 1) { 
+              if (profileID < arrayVicini(i)) { 
                 cont += 1
               }
-              if (groundtruth.value.contains((profileID, arrayVicini(i)))) { //Il groundtruth è organizzato come (ID dataset1, ID dataset2), quindi devo cercare il profilo con ID minore
-                edges = UnweightedEdge(profileID, arrayVicini(i)) :: edges //Genero l'edge che voglio tenere
+              if (groundtruth.value.contains((profileID, arrayVicini(i)))) { 
+                edges = UnweightedEdge(profileID, arrayVicini(i)) :: edges 
               }
               else if (groundtruth.value.contains((arrayVicini(i), profileID))) {
                 edges = UnweightedEdge(arrayVicini(i), profileID) :: edges
               }
-              arrayPesi.update(arrayVicini(i), 0) //Il peso di questo vicino non mi serve più, lo resetto per il prossimo giro
+              arrayPesi.update(arrayVicini(i), 0) 
             }
-            numeroVicini = 0 //Resetto numero di vicini
-            (cont.toDouble, edges) //Fornisco in output il numero di vicini mantenuto e il match vero
+            numeroVicini = 0 
+            (cont.toDouble, edges) 
         }
     }
   }

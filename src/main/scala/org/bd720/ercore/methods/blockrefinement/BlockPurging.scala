@@ -21,12 +21,6 @@ object BlockPurging {
     }
   }
   def sumPrecedentLevels(input : Iterable[(Double, (Double, Double))]) : Iterable[(Double, (Double, Double))] = {
-    /*val out : ListBuffer[(Double, (Double, Double))] = new ListBuffer[(Double, (Double, Double))]()
-    out ++= input
-    for(i <- 0 to input.size-2){
-      out(i+1) = (out(i+1)._1, (out(i+1)._2._1+out(i)._2._1, out(i+1)._2._2+out(i)._2._2))
-    }
-    out.toList*/
     if(input.isEmpty){
       input
     }
@@ -46,9 +40,9 @@ object BlockPurging {
       previousSize = currentSize
       previousBC = currentBC
       previousCC = currentCC
-      currentSize = input(i)._1     //Current comparison level
-      currentBC = input(i)._2._2    //Current comparison level number of elements
-      currentCC = input(i)._2._1    //Current comparison level number of comparisons
+      currentSize = input(i)._1     
+      currentBC = input(i)._2._2    
+      currentCC = input(i)._2._1    
       if (currentBC * previousCC < smoothFactor * currentCC * previousBC) {
         return previousSize
       }

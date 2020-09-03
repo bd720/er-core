@@ -83,11 +83,7 @@ object CEP {
         if (neighborWeight == globalThreshold) {
           neighborToKeep -= 1
         }
-      } /*
-        else{
-          log.info("SPARKER - Id mio "+profileID+", ID vicino "+neighborID+", soglia vicino "+neighborThreshold+", peso vicino "+neighborWeight+", soglia mia "+profileThreshold+", comparison type "+comparisonType+" ----> Non lo tengo")
-        }*/
-    }
+      }     }
     (cont, gtFound, edges)
   }
   def calcThreshold(profileBlocksFiltered: RDD[ProfileBlocks],

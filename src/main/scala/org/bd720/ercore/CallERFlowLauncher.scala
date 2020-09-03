@@ -22,13 +22,13 @@ object CallERFlowLauncher {
     flowArgs +:= "q=2"
     flowArgs +:= "optionSize=3"
     flowArgs +:= "option0=q:2"
-    flowArgs +:= "option1=threshold:1" //0,1,2
+    flowArgs +:= "option1=threshold:1" 
     flowArgs +:= "option2=algorithm:EDJoin"
     flowArgs +:= "outputPath=" + "/Users/mac/Development/learn/er-spark/output/trade-product"
     flowArgs +:= "outputType=" + "csv"
-    flowArgs +:= "joinResultFile=" + "aa"
+    flowArgs +:= "joinResultFile=" + "aa2"
     flowArgs +:= "overwriteOnExist=" + "true"
-    flowArgs +:= "showSimilarity=" + "false"
+    flowArgs +:= "showSimilarity=" + "true"
     ERFlowLauncher.main(flowArgs)
   }
 }

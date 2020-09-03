@@ -148,9 +148,6 @@ object StatisticsEstimator {
   def comparisonCandidatesGroundtruth(groundtruth: RDD[MatchingEntities], candidates: RDD[MatchingEntities], isCleanClean: Boolean): Long = {
     if (isCleanClean) {
       val mapGroundTruth = SparkContext.getOrCreate().broadcast(groundtruth.map(gt => (gt.firstEntityID, gt.secondEntityID)).collect.toMap)
-      /*
-      val commonCounter =
-        candidates.map(c => (c.firstEntityID, c.secondEntityID)).groupByKey().filter(x => mapGroundTruth.value.contains(x._1) && x._2.toSet.contains(mapGroundTruth.value(x._1))).count()
       val commonCounter =
         candidates.map(c => (c.firstEntityID, c.secondEntityID)).groupByKey().filter(containsKey(mapGroundTruth.value)).count()
       mapGroundTruth.destroy()

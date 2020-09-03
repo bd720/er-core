@@ -53,7 +53,7 @@ object ConnectedComponents extends Serializable {
     })
     val localAdd = (s: mutable.HashSet[Long], v: Long) => s += v
     val partitionAdd = (s1: mutable.HashSet[Long], s2: mutable.HashSet[Long]) => s1 ++= s2
-    val allNeighbors = neighbors.aggregateByKey(mutable.HashSet.empty[Long] /*, rangePartitioner*/)(localAdd, partitionAdd)
+    val allNeighbors = neighbors.aggregateByKey(mutable.HashSet.empty[Long] )(localAdd, partitionAdd)
     val newNodePairsWithChangeCount = allNeighbors.map(x => {
       val self = x._1
       val neighbors: List[Long] = x._2.toList

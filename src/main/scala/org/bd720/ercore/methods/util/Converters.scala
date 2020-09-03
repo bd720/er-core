@@ -8,7 +8,7 @@ object Converters {
       .flatMap(blockIDProfileIDFromBlock)
       .groupByKey()
       .map(x => ProfileBlocks(x._1, x._2.toSet))
-      .cache() // <--- GM
+      .cache() 
   }
   def blockIDProfileIDFromBlock(block: BlockAbstract): Iterable[(Int, BlockWithComparisonSize)] = {
     val blockWithComparisonSize = BlockWithComparisonSize(block.blockID, block.getComparisonSize())

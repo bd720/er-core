@@ -6,12 +6,22 @@ trait SparkEnvSetup {
   val log = LoggerFactory.getLogger(this.getClass.getName)
   var appConfig = scala.collection.Map[String, Any]()
   var sparkSession: SparkSession = null
-  def createSparkSession(applicationName: String, configPath: String = null): SparkSession = {
+  def createSparkSession(applicationName: String, appConf: SparkAppConfiguration = null): SparkSession = {
     try {
       if (sparkSession == null || sparkSession.sparkContext.isStopped) {
         val sparkConf = new SparkConf()
         sparkConf.setAppName(applicationName)
-        sparkSession = SparkSession.builder().config(sparkConf).getOrCreate()
+        sparkConf.setMaster(appConf.master)
+        for (o <- appConf.options) {
+          sparkConf.set(o._1, o._2)
+          log.info("set spark config option:" + o)
+        }
+        val builder = SparkSession.builder().config(sparkConf)
+        if (appConf.enableHiveSupport) {
+          log.info("enable hive support")
+          builder.enableHiveSupport()
+        }
+        sparkSession = builder.getOrCreate()
       }
       log.info("spark session {}", sparkSession)
       sparkSession

@@ -49,7 +49,6 @@ object SortedNeighborhood extends Serializable {
       part.flatMap(_._2).toList.sortBy(_._1).map(_._2).sliding(slidingWindows)
     }
     val blocks = b1.union(b2)
-    /* For each tokens divides the profiles in two lists according to the original datasets where they come (in case of Clean-Clean) */
     val profilesGrouped = blocks.map {
       c =>
         val entityIds = c.toSet
@@ -63,7 +62,6 @@ object SortedNeighborhood extends Serializable {
         }
         blockEntities
     }
-    /* Removes blocks that contains only one profile, and associate an unique ID to each block */
     val profilesGroupedWithIds = profilesGrouped filter {
       block =>
         if (separatorIDs.isEmpty) block.head.size > 1

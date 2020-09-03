@@ -6,19 +6,15 @@ object MergeCenterClustering extends EntityClusteringTrait {
   override def getClusters(profiles: RDD[Profile], edges: RDD[WeightedEdge], maxProfileID: Int, edgesThreshold: Double, separatorID: Int): RDD[(Int, Set[Int])] = {
     val cc = connectedComponents(edges.filter(_.weight > edgesThreshold))
     val res = cc.repartition(1).mapPartitions { partition =>
-      /* Contains the ID of the center to which a profile is assigned */
       val currentAssignedCenter = Array.fill[Int](maxProfileID + 1) {
         -1
       }
-      /* Check if a profile is not a center */
       val isNonCenter = Array.fill[Boolean](maxProfileID + 1) {
         false
       }
-      /* Check if a profile is a center */
       val isCenter = Array.fill[Boolean](maxProfileID + 1) {
         false
       }
-      /* Generated clusters */
       val clusters = scala.collection.mutable.Map[Int, Set[Int]]()
       def mergeClusters(cToKeep: Int, cToMerge: Int): Unit = {
         if (cToKeep > 0 && cToMerge > 0 && cToKeep != cToMerge) {
@@ -29,9 +25,7 @@ object MergeCenterClustering extends EntityClusteringTrait {
         }
       }
       partition.foreach { cluster =>
-        /* Sorts the elements in the cluster descending by their similarity score */
         val sorted = cluster.toList.sortBy(x => (-x._3, x._1))
-        /* Foreach element in the format (u, v, similarity) */
         sorted.foreach { case (u, v, _) =>
           val uIsCenter = isCenter(u.toInt)
           val vIsCenter = isCenter(v.toInt)

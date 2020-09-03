@@ -46,21 +46,21 @@ object EDJoin {
     val customPartitioner = new EDJoinPrefixIndexPartitioner(prefixIndex.getNumPartitions)
     val repartitionIndex = prefixIndex.map(_.swap).sortBy(x => -(x._1.length * (x._1.length - 1))).partitionBy(customPartitioner)
     repartitionIndex.flatMap { case (
-      block /*string contain same token in the prefix*/ ,
-      blockId /*tokenId*/ ) =>
+      block  ,
+      blockId  ) =>
       val results = new scala.collection.mutable.HashSet[((Int, String), (Int, String))]()
       var i = 0
       while (i < block.length) {
         var j = i + 1
-        val d1Id = block(i)._1 // docId
-        val d1Pos = block(i)._2 // index of the prefix
+        val d1Id = block(i)._1 
+        val d1Pos = block(i)._2 
         val d1Qgrams = block(i)._3
-        val d1 = block(i)._4 //the string 1
+        val d1 = block(i)._4 
         while (j < block.length) {
-          val d2Id = block(j)._1 // docId
-          val d2Pos = block(j)._2 // index of the prefix
+          val d2Id = block(j)._1 
+          val d2Pos = block(j)._2 
           val d2Qgrams = block(j)._3
-          val d2 = block(j)._4 //the string 2
+          val d2 = block(j)._4 
           if (d1Id != d2Id &&
             isLastCommonTokenPosition(d1Qgrams, d2Qgrams, blockId, qgramLength, threshold) &&
             math.abs(d1Pos - d2Pos) <= threshold &&
@@ -124,6 +124,23 @@ object EDJoin {
     val candidates = getCandidates(documents, qgramLength, threshold)
     val t2 = Calendar.getInstance().getTimeInMillis
     val m = candidates.map { case ((d1Id, d1), (d2Id, d2)) => ((d1Id, d1), (d2Id, d2), CommonEdFunctions.editDist(d1, d2)) }
+      .filter(_._3 <= threshold)
+      .map { case ((d1Id, d1), (d2Id, d2), ed) => (d1Id, d2Id, ed.toDouble) }
+    m.persist(StorageLevel.MEMORY_AND_DISK)
+    val nm = m.count()
+    val t3 = Calendar.getInstance().getTimeInMillis
+    log.info("[EDJoin] Num matches " + nm)
+    log.info("[EDJoin] Verify time (s) " + (t3 - t2) / 1000.0)
+    log.info("[EDJoin] Global time (s) " + (t3 - t1) / 1000.0)
+    m
+  }
+  def getMatchesWithRate(documents: RDD[(Int, String)], qgramLength: Int, threshold: Int): RDD[(Int, Int, Double)] = {
+    val log = LogManager.getRootLogger
+    log.info("[EDJoin] first document " + documents.first())
+    val t1 = Calendar.getInstance().getTimeInMillis
+    val candidates = getCandidates(documents, qgramLength, threshold)
+    val t2 = Calendar.getInstance().getTimeInMillis
+    val m = candidates.map { case ((d1Id, d1), (d2Id, d2)) => ((d1Id, d1), (d2Id, d2), CommonEdFunctions.editDist(d1, d2)/(d1.length+d2.length)) }
       .filter(_._3 <= threshold)
       .map { case ((d1Id, d1), (d2Id, d2), ed) => (d1Id, d2Id, ed.toDouble) }
     m.persist(StorageLevel.MEMORY_AND_DISK)

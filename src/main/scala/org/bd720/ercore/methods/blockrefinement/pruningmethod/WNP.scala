@@ -119,11 +119,7 @@ object WNP {
             gtFound += 1
           }
           edges.append(UnweightedEdge(profileID, neighbours(i)))
-        } /*
-        else{
-          log.info("SPARKER - Id mio "+profileID+", ID vicino "+neighbourID+", soglia vicino "+neighbourThreshold+", peso vicino "+neighbourWeight+", soglia mia "+profileThreshold+", comparison type "+comparisonType+" ----> Non lo tengo")
-        }*/
-      }
+        }       }
     }
     (cont, gtFound, edges)
   }

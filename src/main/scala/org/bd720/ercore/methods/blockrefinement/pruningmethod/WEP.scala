@@ -70,11 +70,7 @@ object WEP {
           gtFound += 1
         }
         edges = UnweightedEdge(profileID, neighbours(i)) :: edges
-      } /*
-        else{
-          log.info("SPARKER - Id mio "+profileID+", ID vicino "+neighbourID+", soglia vicino "+neighbourThreshold+", peso vicino "+neighbourWeight+", soglia mia "+profileThreshold+", comparison type "+comparisonType+" ----> Non lo tengo")
-        }*/
-    }
+      }     }
     (cont, gtFound, edges)
   }
   def calcThreshold(profileBlocksFiltered: RDD[ProfileBlocks],

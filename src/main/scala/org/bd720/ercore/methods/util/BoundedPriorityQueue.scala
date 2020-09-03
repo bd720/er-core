@@ -1,4 +1,3 @@
-/*
 package org.bd720.ercore.methods.util
 import java.io.Serializable
 import java.util.{PriorityQueue => JPriorityQueue}

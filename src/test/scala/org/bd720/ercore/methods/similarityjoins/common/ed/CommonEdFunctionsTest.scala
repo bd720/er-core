@@ -18,10 +18,10 @@ class CommonEdFunctionsTest extends FlatSpec with SparkEnvSetup {
   }
   it should "getQgramsTf v2 with normal input with equal string size in doc array" in {
     val docsRdd = spark.sparkContext.makeRDD(Seq[(Int, Array[(String, Int)])](
-      (1, Array(("hell", 0), ("o bi", 1), ("gdat", 2), ("a tec", 3), ("tech", 4))), //"hello bigdata tech"
-      (2, Array(("it's", 0), (" all", 1), (" abo", 2), ("ut t", 3), ("tech", 4))), //"it's all about tech"
-      (3, Array(("samp", 0), ("le d", 1), ("data", 2))), //"sample data",
-      (4, Array(("hi", 0))) //"hi"
+      (1, Array(("hell", 0), ("o bi", 1), ("gdat", 2), ("a tec", 3), ("tech", 4))), 
+      (2, Array(("it's", 0), (" all", 1), (" abo", 2), ("ut t", 3), ("tech", 4))), 
+      (3, Array(("samp", 0), ("le d", 1), ("data", 2))), 
+      (4, Array(("hi", 0))) 
     ))
     val mapRdd = CommonEdFunctions.getQgramsTf(docsRdd)
     mapRdd.foreach(x => println("qgram=" + x))
